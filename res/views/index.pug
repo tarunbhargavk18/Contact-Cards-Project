@@ -1,0 +1,33 @@
+doctype html
+html
+    head
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.css")
+        link(href="https://fonts.googleapis.com/css?family=Raleway&display=swap", rel="stylesheet")
+        title="Contacts App"
+
+        style.
+            body{
+                font-family: 'Raleway', sans-serif;
+            }
+    body
+        .header.bg-success.p-5.mb-5
+            h1.display-4.text-light.text-center="Your Contacts"
+        .container
+            .card-group.align-items-center.ml-5
+                each contact in contacts
+                    .row 
+                        .card.m-4.border-danger(style="width: 18rem")
+                            .card-body
+                                p.card-text=contact.id                           
+                                h1.card-title=contact.name
+                                p.card-text=contact.email
+                                p.card-text=contact.phone
+                                form(id=`delete${contact.id}` method ="POST" action=`/${contact.id}/delete`)
+                                    button.btn.btn-outline-danger(type="submit")="Delete"
+            .card.bg-dark.text-light.p-3.mx-5
+                h1.text-light.text-center.card-title="Enter new Contact!"
+                form(method='POST' action='/')
+                        input.form-control.sm.m-2#name(type="text" name="name" placeholder="Enter name" required)    
+                        input.form-control.sm.m-2#email(type="email" name="email" placeholder="Enter email" required)
+                        input.form-control.sm.m-2#phone(type="text" name="phone" placeholder="Enter Phone Number" required)
+                        button.btn.btn-primary.md.m-2(type="submit")="Add"
